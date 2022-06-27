@@ -24,6 +24,7 @@ $(document).ready(function(){
         return builder.join('');
     }
 
+
     $('#txt').on('input', function() {
         var s = $(this).val();
 
@@ -33,10 +34,10 @@ $(document).ready(function(){
         
         var grammar = new tinynlp.Grammar(rules);
 
-        grammar.terminalSymbols = function(token){
-            // if ('=' === token) return ['equ'];
-            return ['num'];
-        }
+        // grammar.terminalSymbols = function(token){
+        //     // if ('=' === token) return ['equ'];
+        //     return ['num'];
+        // }
 
         
         var rootProduction = 'hypo';

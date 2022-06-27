@@ -375,7 +375,7 @@ var tinynlp = (function(){
                     j++;
                 }
             }
-            chart.log(i)
+            // chart.log(i)
         }
         return chart;
     }    
