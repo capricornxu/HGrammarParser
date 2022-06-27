@@ -5,19 +5,20 @@
     <script type="text/javascript" src="http://code.jquery.com/jquery-2.1.3.min.js"></script>
     <script type="text/javascript" src="script.js"></script>
 </head>
-<!-- <body onLoad="init()"> -->
 <body>
 <div class="center">
 <h1>Hypothesis Grammar Parser</h1>
 <textarea name="Text1" cols="70" rows="20" id="grm">
-    hypo -> var op const
+    hypo -> expr op expr
+    expr -> var
     var ->  attr | attr [ pred ] | const
     op -> = | < | > 
     attr -> cost | id | market
     const -> num | str | date
     pred -> var op const | var op const & pred
+    func -> AVG | KS | LM | SRES | MAX
     num -> 2
-    str -> 'US'   
+    str -> 'US'
 </textarea>
 <br/>
 <a href="#" class="example"> reset</a> <br/>
