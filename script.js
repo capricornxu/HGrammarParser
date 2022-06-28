@@ -49,7 +49,7 @@ $(document).ready(function(){
         var state = chart.getFinishedRoot(rootProduction);
         if (state) {
             var trees = state.traverse();
-            // console.log(displayTree(trees[0]));
+            console.log(displayTree(trees[0]));
             $('#dv').empty();
             for (var i in trees) {
                 // console.log(JSON.stringify(trees[i]))
