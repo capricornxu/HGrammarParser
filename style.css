@@ -17,29 +17,23 @@ Source: http://thecodeplayer.com/walkthrough/css3-family-tree
 Some other advices about displaying trees: http://stackoverflow.com/questions/1695115/how-do-i-draw-the-lines-of-a-family-tree-using-html-css
 */
 
-* {
+.tree, .tree ul, .tree li {
     margin: 0;
     padding: 0;
 }
 
-.center {
-	margin: auto;
-	width: 50%;
-	padding: 10px;
-}
-
-.displayTree{
-    margin: 10px;
-}
-
 .tree ul {
+	margin: 0;
+    padding: 0;
 	padding-top: 20px;
     position: relative;
 	transition: all 0.5s;
 }
 
 .tree li {
-    white-space: nowrap;
+	margin: 0;
+    padding: 0;
+    /* white-space: nowrap; */
 	float: left;
     text-align: center;
 	list-style-type: none;

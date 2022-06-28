@@ -49,9 +49,10 @@ $(document).ready(function(){
         var state = chart.getFinishedRoot(rootProduction);
         if (state) {
             var trees = state.traverse();
+            // console.log(displayTree(trees[0]));
             $('#dv').empty();
             for (var i in trees) {
-                console.log(JSON.stringify(trees[i]))
+                // console.log(JSON.stringify(trees[i]))
                 $('#dv').append('<div class="tree" id="displayTree"><ul>' + displayTree(trees[i]) + '</ul></div></br>');
             }
         }
