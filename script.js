@@ -3,7 +3,7 @@ $(document).ready(function(){
     // jQuery methods go here...
     $('.example').click(function(){     
         $('#txt').val($(this).text());
-        $('#txt').trigger('input');
+        // $('#txt').trigger('input');
         return false;
     });
 
@@ -25,12 +25,11 @@ $(document).ready(function(){
         return builder.join('');
     }
 
-
-    $('#txt').on('input', function() {
-        var s = $(this).val();
+    $('#btn1').click(function(){
+        var s = $('#txt').val();
 
         var tokenStream = s.trim().split(' ');
-        console.log(tokenStream);
+        // console.log(tokenStream);
 
         // detect number and string
         for(var i in tokenStream){
@@ -43,12 +42,13 @@ $(document).ready(function(){
             }
         }
 
-
-
-
-        var rules = $('#tgrm').val() + $('#ntgrm').val();
+        // var rules = $('#tgrm').val() + $('#ntgrm').val();
+        const p = document.getElementById('test');
+        var test_rules = p.textContent;
+        rules = p.textContent + $('#tgrm').val();
+        // console.log(test_rules);
         rules = rules.trim().split('\n');
-        console.log(rules);
+        // console.log(rules);
 
         var grammar = new tinynlp.Grammar(rules);
         
@@ -56,16 +56,22 @@ $(document).ready(function(){
         var chart = tinynlp.parse(tokenStream, grammar, rootProduction);
 
         var state = chart.getFinishedRoot(rootProduction);
+        console.log(state);
+        
         if (state) {
+            $("#p1").html("<span style='color: green;'>Valid</span>");
             var trees = state.traverse();
-            console.log(displayTree(trees[0]));
             $('#dv').empty();
             for (var i in trees) {
                 // console.log(JSON.stringify(trees[i]))
                 $('#dv').append('<div class="tree" id="displayTree"><ul>' + displayTree(trees[i]) + '</ul></div></br>');
             }
         }
-    });
+        else{
+            $("#p1").html("<span style='color: red;'>Invalid</span>");
+            $("#dv").html("");
+        }
+    })
   });
 
   

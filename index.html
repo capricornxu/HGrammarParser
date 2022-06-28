@@ -8,14 +8,19 @@
 <body>
 <!-- <div class="center"> -->
 <h1>Hypothesis Grammar Parser</h1>
-<textarea name="Text1" cols="50" rows="20" id="tgrm">
-hypo -> expr op expr
-expr -> func ( subexpr ) | var
-subexpr -> expr | expr , expr
-var ->  attr | attr [ pred ] | const
-pred -> var op const | var op const & pred
-</textarea>
-<textarea name="Nontermial Symbol" cols="60" rows="20" id="ntgrm">
+<div id="div1">
+<h2>Non-terminal Symbols</h2>
+<p name="Nontermial Symbol" id="test">
+    hypo -> expr op expr<br/>
+    expr -> func ( subexpr ) | var<br/>
+    subexpr -> expr | expr , expr<br/>
+    var ->  attr | attr [ pred ] | const<br/>
+    pred -> var op const | var op const & pred<br/>
+</p>
+</div>
+<div id="div2">
+<h2>Terminal Symbols</h2>
+<textarea name="Termial Symbol" cols="60" rows="10" id="tgrm">
 op -> = | < | > 
 attr -> Title | Year | Genre | Rating | cost |market
 const -> num | str | date | id 
@@ -23,8 +28,9 @@ func -> AVG | KS | LM | SRES | MAX
 num -> number
 str -> string
 </textarea>
+</div>
 <br/>
-<a href="#" class="example"> reset</a> <br/>
+<a href="#" class="example"> Invalid Input</a> <br/>
 <a href="#" class="example"> 2 < 2</a> <br/>
 <a href="#" class="example">  cost [ id = 2 ] < 2</a> <br/>
 <a href="#" class="example">  cost [ id = 2 & cost = 2 ] < 2</a> <br/>
@@ -32,6 +38,8 @@ str -> string
 <a href="#" class="example"> AVG ( cost [ id = 2 ] , cost [ market = 'US' ] ) = 2</a> <br/>
 <a href="#" class="example"> Rating [ Title = 'TheGodfather' ] = 9.1</a> <br/>
 <input type="text" size="50" id="txt"/>
+<button id="btn1">parse</button>
+<p id="p1"></p>
 <div id="dv"></div>
 
 </body>

@@ -17,6 +17,17 @@ Source: http://thecodeplayer.com/walkthrough/css3-family-tree
 Some other advices about displaying trees: http://stackoverflow.com/questions/1695115/how-do-i-draw-the-lines-of-a-family-tree-using-html-css
 */
 
+p#test {
+	border-style: groove;
+	/* border-left: 6px solid black; */
+	width: 500px;
+	line-height: 1.5;
+}
+
+#tgrm{
+	line-height: 1.5;
+}
+
 .tree, .tree ul, .tree li {
     margin: 0;
     padding: 0;
