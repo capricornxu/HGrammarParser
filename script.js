@@ -21,6 +21,7 @@ $(document).ready(function(){
         }
         builder.push('</ul>')
         builder.push('</li>')
+        // console.log(builder);
         return builder.join('');
     }
 
@@ -30,8 +31,10 @@ $(document).ready(function(){
 
         var tokenStream = s.trim().split(' ');
 
-        var rules = $('#grm').val().trim().split('\n')
-        
+        var rules = $('#tgrm').val() + $('#ntgrm').val();
+        rules = rules.trim().split('\n');
+        console.log(rules);
+
         var grammar = new tinynlp.Grammar(rules);
 
         // grammar.terminalSymbols = function(token){
@@ -54,3 +57,5 @@ $(document).ready(function(){
         }
     });
   });
+
+  
