@@ -31,23 +31,26 @@ $(document).ready(function(){
 
         var tokenStream = s.trim().split(' ');
         console.log(tokenStream);
+
+        // detect number and string
         for(var i in tokenStream){
             if(!isNaN(tokenStream[i])){
                 tokenStream[i] = 'number';
             }
+            
+            if(tokenStream[i][0] == "'"){
+                tokenStream[i] = 'string';
+            }
         }
+
+
+
 
         var rules = $('#tgrm').val() + $('#ntgrm').val();
         rules = rules.trim().split('\n');
         console.log(rules);
 
         var grammar = new tinynlp.Grammar(rules);
-
-        // grammar.terminalSymbols = function(token){
-        //     // if ('=' === token) return ['equ'];
-        //     return ['num'];
-        // }
-
         
         var rootProduction = 'hypo';
         var chart = tinynlp.parse(tokenStream, grammar, rootProduction);

@@ -21,7 +21,7 @@ attr -> Title | Year | Genre | Rating | cost |market
 const -> num | str | date | id 
 func -> AVG | KS | LM | SRES | MAX
 num -> number
-str -> 'The Godfather' | 'US'
+str -> string
 </textarea>
 <br/>
 <a href="#" class="example"> reset</a> <br/>
@@ -30,7 +30,7 @@ str -> 'The Godfather' | 'US'
 <a href="#" class="example">  cost [ id = 2 & cost = 2 ] < 2</a> <br/>
 <a href="#" class="example"> cost [ market = 'US' ] < 2</a> <br/>
 <a href="#" class="example"> AVG ( cost [ id = 2 ] , cost [ market = 'US' ] ) = 2</a> <br/>
-<a href="#" class="example"> Rating [ Title = 'The Godfather' ] = 9.1</a> <br/>
+<a href="#" class="example"> Rating [ Title = 'TheGodfather' ] = 9.1</a> <br/>
 <input type="text" size="50" id="txt"/>
 <div id="dv"></div>
 
