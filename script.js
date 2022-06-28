@@ -30,6 +30,12 @@ $(document).ready(function(){
         var s = $(this).val();
 
         var tokenStream = s.trim().split(' ');
+        console.log(tokenStream);
+        for(var i in tokenStream){
+            if(!isNaN(tokenStream[i])){
+                tokenStream[i] = 'number';
+            }
+        }
 
         var rules = $('#tgrm').val() + $('#ntgrm').val();
         rules = rules.trim().split('\n');
