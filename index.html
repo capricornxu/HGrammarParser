@@ -8,8 +8,10 @@
 <body>
 <!-- <div class="center"> -->
 <h1>Hypothesis Grammar Parser</h1>
+<h2>Rules</h2>
+<div id="div3">
 <div id="div1">
-<h2>Non-terminal Symbols</h2>
+<h3>Non-terminal Symbols</h2>
 <p name="Nontermial Symbol" id="test">
     hypo -> expr op expr<br/>
     expr -> func ( expr ) | var | expr , expr<br/>
@@ -18,8 +20,8 @@
 </p>
 </div>
 <div id="div2">
-<h2>Terminal Symbols</h2>
-<textarea name="Termial Symbol" cols="60" rows="10" id="tgrm">
+<h3>Terminal Symbols</h2>
+<textarea name="Termial Symbol"  rows="10" id="tgrm">
 op -> = | < | > 
 attr -> Title | Year | Genre | Rating | cost | market
 const -> num | str | date | id 
@@ -27,6 +29,7 @@ func -> AVG | KS | LM | SRES | MAX | SUB
 num -> number
 str -> string
 </textarea>
+</div>
 </div>
 <br/>
 <a href="#" class="example"> Invalid Input</a> <br/>
