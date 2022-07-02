@@ -12,19 +12,18 @@
 <h3>Non-terminal Symbols</h2>
 <p name="Nontermial Symbol" id="test">
     hypo -> expr op expr<br/>
-    expr -> func ( subexpr ) | var<br/>
-    subexpr -> expr | expr , expr<br/>
+    expr -> func ( expr ) | var | expr , expr<br/>
     var ->  attr | attr [ pred ] | const<br/>
-    pred -> var op const | var op const & pred<br/>
+    pred -> var op const | pred & pred<br/>
 </p>
 </div>
 <div id="div2">
 <h3>Terminal Symbols</h2>
 <textarea name="Termial Symbol"  rows="10" id="tgrm">
 op -> = | < | > 
-attr -> Title | Year | Genre | Rating | cost |market
+attr -> Title | Year | Genre | Rating | cost | market
 const -> num | str | date | id 
-func -> AVG | KS | LM | SRES | MAX
+func -> AVG | KS | LM | SRES | MAX | SUB
 num -> number
 str -> string
 </textarea>
@@ -34,10 +33,13 @@ str -> string
 <a href="#" class="example"> Invalid Input</a> <br/>
 <a href="#" class="example"> 2 < 2</a> <br/>
 <a href="#" class="example">  cost [ id = 2 ] < 2</a> <br/>
-<a href="#" class="example">  cost [ id = 2 & cost = 2 ] < 2</a> <br/>
+<a href="#" class="example">  cost [ id = 2 & cost = 2 ] < cost [ id = 2 & cost = 2 ]</a> <br/>
 <a href="#" class="example"> cost [ market = 'US' ] < 2</a> <br/>
-<a href="#" class="example"> AVG ( cost [ id = 2 ] , cost [ market = 'US' ] ) = 2</a> <br/>
+<a href="#" class="example"> AVG ( cost [ id = 2 ] ) = AVG ( cost [ id = 2 ] )</a> <br/>
 <a href="#" class="example"> Rating [ Title = 'TheGodfather' ] = 9.1</a> <br/>
+<a href="#" class="example"> AVG ( cost [ id = 2 ] , cost [ market = 'US' ] , cost [ market = 'US' ] ) = AVG ( cost [ id = 2 ] , cost [ market = 'US' ] , cost [ market = 'US' ] )</a> <br/>
+<a href="#" class="example"> SUB ( AVG ( cost ) , AVG ( market ) ) < 10</a> <br/>
+
 <input type="text" size="50" id="txt"/>
 <button id="btn1">parse</button>
 <p id="p1"></p>
