@@ -48,7 +48,7 @@ $(document).ready(function(){
         rules = p.textContent + $('#tgrm').val();
         // console.log(test_rules);
         rules = rules.trim().split('\n');
-        // console.log(rules);
+        console.log(rules);
 
         var grammar = new tinynlp.Grammar(rules);
         
@@ -62,10 +62,12 @@ $(document).ready(function(){
             $("#p1").html("<span style='color: green;'>Valid</span>");
             var trees = state.traverse();
             $('#dv').empty();
-            for (var i in trees) {
-                // console.log(JSON.stringify(trees[i]))
-                $('#dv').append('<div class="tree" id="displayTree"><ul>' + displayTree(trees[i]) + '</ul></div></br>');
-            }
+            // console.log(trees);
+            $('#dv').append('<div class="tree" id="displayTree"><ul>' + displayTree(trees[0]) + '</ul></div></br>');
+            // for (var i in trees) {
+            //     // console.log(JSON.stringify(trees[i]))
+            //     $('#dv').append('<div class="tree" id="displayTree"><ul>' + displayTree(trees[i]) + '</ul></div></br>');
+            // }
         }
         else{
             $("#p1").html("<span style='color: red;'>Invalid</span>");
