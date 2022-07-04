@@ -25,22 +25,55 @@ $(document).ready(function(){
         return builder.join('');
     }
 
+    function allindexof(array,element){
+        var index = [];
+          for (i = 0; i < array.length; i++){
+            if (array[i] === element) {  
+              index.push(i);
+            }
+          }
+        return index;
+    }
+
+    String.prototype.replaceAt = function(index, replacement) {
+        return this.substring(0, index) + replacement + this.substring(index + replacement.length);
+    }
+
     $('#btn1').click(function(){
         var s = $('#txt').val();
 
-        var tokenStream = s.trim().split(' ');
-        // console.log(tokenStream);
+        var tokenStream = s;
+        console.log(tokenStream);
+        var index = allindexof(tokenStream, "'")
+        console.log(index);
+        for(var i in allindexof(tokenStream, "'")){
+            if(i % 2 == 0){
+                tokenStream = tokenStream.replaceAt(index[i] + 1, "#");
+            }
+        }
+        // if(tokenStream.indexOf("'") > 0){
+        //     tokenStream = tokenStream.replaceAt(tokenStream.indexOf("'") + 1, "#");
+        // }
+        console.log(tokenStream);
+        tokenStream = tokenStream.split("'");
+        // console.log(tokenStream[1][0]);
+        for(var i in tokenStream){
+            // tokenStream = tokenStream[i].trim();
+            if(tokenStream[i][0] == '#'){
+                tokenStream[i] = 'string';
+            }
+        }
+        tokenStream = tokenStream.join('');
+        tokenStream = tokenStream.trim().split(' ');
+        console.log(tokenStream);
 
         // detect number and string
         for(var i in tokenStream){
             if(!isNaN(tokenStream[i])){
                 tokenStream[i] = 'number';
             }
-            
-            if(tokenStream[i][0] == "'"){
-                tokenStream[i] = 'string';
-            }
         }
+        // console.log(tokenStream);
 
         // var rules = $('#tgrm').val() + $('#ntgrm').val();
         const p = document.getElementById('test');
