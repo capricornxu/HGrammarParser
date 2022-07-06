@@ -21,9 +21,9 @@
 <h3>Terminal Symbols</h2>
 <textarea name="Termial Symbol"  rows="10" id="tgrm">
 op -> = | < | > 
-attr -> Title | Year | Genre | Rating | cost | market
+attr -> Title | Year | Genre | Rating | Cost | Market
 const -> num | str | date | id 
-func -> AVG | KS | LM | SRES | MAX | SUB
+func -> AVG | KS | LM | SRES | MAX | SUB | COUNT
 num -> number
 str -> string
 </textarea>
@@ -32,15 +32,15 @@ str -> string
 <br/>
 <a href="#" class="example"> Invalid Input</a> <br/>
 <a href="#" class="example"> 2 < 2</a> <br/>
-<a href="#" class="example">  cost [ id = 2 ] < 2</a> <br/>
-<a href="#" class="example">  cost [ id = 2 & cost = 2 ] < cost [ id = 2 & cost = 2 ]</a> <br/>
-<a href="#" class="example"> cost [ market = 'US' ] < cost [ market = 'US' ]</a> <br/>
-<a href="#" class="example"> AVG ( cost [ id = 2 ] ) = AVG ( cost [ id = 2 ] )</a> <br/>
-<a href="#" class="example"> AVG(cost[id = 2]) = AVG(cost[id = 2])</a> <br/>
+<a href="#" class="example">  Cost [ id = 2 ] < 2</a> <br/>
+<a href="#" class="example"> Cost [ Market = 'US' ] < Cost [ Market = 'US' ]</a> <br/>
+<a href="#" class="example"> AVG ( Cost [ id = 2 ] ) = AVG ( Cost [ id = 2 ] )</a> <br/>
+<a href="#" class="example"> AVG(Cost[id = 2]) = AVG(Cost[id = 2])</a> <br/>
 <a href="#" class="example"> Rating [ Title = 'The Godfather' ] = 9.1</a> <br/>
 <a href="#" class="example"> Rating[Title = 'The Godfather'] = 9.1</a> <br/>
-<a href="#" class="example"> AVG ( cost [ id = 2 ] , cost [ market = 'US' ] , cost [ market = 'US' ] ) = AVG ( cost [ id = 2 ] , cost [ market = 'US' ] , cost [ market = 'US' ] )</a> <br/>
-<a href="#" class="example"> SUB ( AVG ( cost ) , AVG ( market ) ) < 10</a> <br/>
+<a href="#" class="example"> COUNT(Rating[Title = 'The Godfather']) = 2</a> <br/>
+<a href="#" class="example"> AVG ( Cost [ id = 2 ] , Cost [ Market = 'US' ] , Cost [ Market = 'US' ] ) = AVG ( Cost [ id = 2 ] , Cost [ market = 'US' ] , Cost [ market = 'US' ] )</a> <br/>
+<a href="#" class="example"> SUB ( AVG ( Cost ) , AVG ( Market ) ) < 10</a> <br/>
 
 <input type="text" size="60" id="txt"/>
 <button id="btn1">parse</button>
