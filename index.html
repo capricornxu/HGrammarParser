@@ -12,7 +12,7 @@
 <h3>Non-terminal Symbols</h2>
 <p name="Nontermial Symbol" id="test">
     hypo -> expr op expr<br/>
-    expr -> func ( expr ) | var | expr , expr<br/>
+    expr -> func ( expr ) | var | expr , expr | <br/>
     var ->  attr | attr [ pred ] | const<br/>
     pred -> var op const | pred & pred<br/>
 </p>
@@ -39,6 +39,7 @@ str -> string
 <a href="#" class="example"> Rating [ Title = 'The Godfather' ] = 9.1</a> <br/>
 <a href="#" class="example"> Rating[Title = 'The Godfather'] = 9.1</a> <br/>
 <a href="#" class="example"> COUNT(Rating[Title = 'The Godfather']) = 2</a> <br/>
+<a href="#" class="example"> COUNT() > 1 [Year=1999]</a> <br/>
 <a href="#" class="example"> AVG ( Cost [ id = 2 ] , Cost [ Market = 'US' ] , Cost [ Market = 'US' ] ) = AVG ( Cost [ id = 2 ] , Cost [ market = 'US' ] , Cost [ market = 'US' ] )</a> <br/>
 <a href="#" class="example"> SUB ( AVG ( Cost ) , AVG ( Market ) ) < 10</a> <br/>
 
