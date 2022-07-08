@@ -12,7 +12,7 @@
 <h3>Non-terminal Symbols</h2>
 <p name="Nontermial Symbol" id="test">
     hypo -> expr op expr<br/>
-    expr -> func ( expr ) | var | expr , expr | <br/>
+    expr -> func ( expr ) | var | expr , expr | func ( )<br/>
     var ->  attr | attr [ pred ] | const<br/>
     pred -> var op const | pred & pred<br/>
 </p>
@@ -32,7 +32,7 @@ str -> string
 <br/>
 <a href="#" class="example"> Invalid Input</a> <br/>
 <a href="#" class="example"> 2 < 2</a> <br/>
-<a href="#" class="example">  Cost [ id = 2 ] < 2</a> <br/>
+<a href="#" class="example"> Cost[id=2]<2</a> <br/>
 <a href="#" class="example"> Cost [ Market = 'US' ] < Cost [ Market = 'US' ]</a> <br/>
 <a href="#" class="example"> AVG ( Cost [ id = 2 ] ) = AVG ( Cost [ id = 2 ] )</a> <br/>
 <a href="#" class="example"> AVG(Cost[id = 2]) = AVG(Cost[id = 2])</a> <br/>
