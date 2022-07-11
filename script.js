@@ -1,3 +1,5 @@
+const special_symbols = ['(', ')', '[', ']', '&', ','];
+
 $(document).ready(function(){
 
     // jQuery methods go here...
@@ -38,27 +40,6 @@ $(document).ready(function(){
     // replace element of specific index
     String.prototype.replaceAt = function(index, replacement) {
         return this.substring(0, index) + replacement + this.substring(index + replacement.length);
-    }
-
-    function addESaround(string, symbol){
-        // console.log(symbol);
-        const index = allindexof(string, symbol);
-        // console.log(index);
-        for(var i in index){
-            const index = allindexof(string, symbol);
-            if(index[i] >= 0){
-                if(string[index[i]-1] != ' '){
-                    string = string.slice(0, index[i]) + ' ' + string.slice(index[i]);
-                    index[i] = index[i] + 1;
-                }
-                // console.log(string[index[0]]);
-                if(string[index[i]+1] != ' '){
-                    string = string.slice(0, index[i]+1) + ' ' + string.slice(index[i]+1);
-                    index[i] = index[i] + 1;
-                }
-            }
-        }
-        return string;
     }
 
     function eliminateQuotes(string){
@@ -116,80 +97,73 @@ $(document).ready(function(){
         return terminal_symbols;
     }
 
+    function getIndicesOf(searchStr, str, caseSensitive) {
+        var searchStrLen = searchStr.length;
+        if (searchStrLen == 0) {
+            return [];
+        }
+        var startIndex = 0, index, indices = [];
+        if (!caseSensitive) {
+            str = str.toLowerCase();
+            searchStr = searchStr.toLowerCase();
+        }
+        while ((index = str.indexOf(searchStr, startIndex)) > -1) {
+            indices.push(index);
+            startIndex = index + searchStrLen;
+        }
+        return indices;
+    }
+
     String.prototype.splitbytokens = function(tokens){
         str = this;
         str = str.replace(/\s/g, "");
-        str = str.match(tokens);
+        var indices = []
+        for(var i in tokens){
+            indices.push(getIndicesOf(tokens[i], str));
+        }
+        indices = indices.flat().sort(function(a, b){return a - b}).reverse();
+        indices = indices.filter((c, index) => {
+            return indices.indexOf(c) === index;
+        });
+        // console.log(uniqueChars);
+        console.log(indices);
+        for(var i in indices){
+            str = str.slice(0, indices[i]) + '-|-' + str.slice(indices[i], str.length);
+        }
+        str = str.split('-|-');
+        str = str.slice(1, str.length);
 
         return str;
     }
 
     $('#btn1').click(function(){
-        var s = $('#txt').val();
+        var s = $('#txt').val(); 
 
-        var tokenStream = s;
+        const p = document.getElementById('test');
+        rules = p.textContent + $('#tgrm').val();
+        rules = rules.trim().split('\n');
+        console.log(rules);
 
-        // replace the first element in quotes with #
-        var quote_index = allindexof(tokenStream, "'")
-        for(var i in allindexof(tokenStream, "'")){
-            if(i % 2 == 0){
-                tokenStream = tokenStream.replaceAt(quote_index[i] + 1, "#");
-            }
-        }
-
-        // tramsform quotes to 'string'
-        tokenStream = tokenStream.split("'");
-        for(var i in tokenStream){
-            if(tokenStream[i][0] == '#'){
-                tokenStream[i] = 'string';
-            }
-        }
-        tokenStream = tokenStream.join('');
-        // var test_token = tokenStream.slice();
-
-        // add empty space around brackets and parentheses
-        // console.log(tokenStream);
-        tokenStream = addESaround(tokenStream, "[");
-        tokenStream = addESaround(tokenStream, "]");
-        tokenStream = addESaround(tokenStream, "(");
-        tokenStream = addESaround(tokenStream, ")");
-        // console.log(tokenStream);
-        tokenStream = tokenStream.trim().split(' ');
-
-        // detect number
-        for(var i in tokenStream){
-            if(!isNaN(tokenStream[i])){
-                tokenStream[i] = 'number';
-            }
-        }
-        console.log(tokenStream);   
-
-        var test_token = s.trim();
-        console.log(test_token);
+        var tokenstream = s.trim();
+        console.log(tokenstream);
         // tramsform quotes to 'string' and number to 'number'
-        test_token = eliminateQuotes(test_token);
-        test_token = eliminateNum(test_token);
-        console.log(test_token);
+        tokenstream = eliminateQuotes(tokenstream);
+        tokenstream = eliminateNum(tokenstream);
+        console.log(tokenstream);
         // tokenize rules
         termnal_rules = $('#tgrm').val();
         console.log(termnal_rules);
         var terminal_symbols = getTsymbol(termnal_rules);
+        terminal_symbols = terminal_symbols.concat(special_symbols);
         console.log(terminal_symbols);
         // split by tokens
-        test_token = test_token.splitbytokens(terminal_symbols);
-        // test_token = test_token.replace(/\s/g, "");
-        console.log(test_token);
-
-        const p = document.getElementById('test');
-        rules = p.textContent + $('#tgrm').val();
-        // console.log(test_rules);
-        rules = rules.trim().split('\n');
-        console.log(rules);
+        tokenstream = tokenstream.splitbytokens(terminal_symbols);
+        console.log(tokenstream);
 
         var grammar = new tinynlp.Grammar(rules);
         
         var rootProduction = 'hypo';
-        var chart = tinynlp.parse(tokenStream, grammar, rootProduction);
+        var chart = tinynlp.parse(tokenstream, grammar, rootProduction);
 
         var state = chart.getFinishedRoot(rootProduction);
         console.log(state);
