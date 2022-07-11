@@ -1,9 +1,9 @@
 <html>
 <head>
-    <link rel="stylesheet" type="text/css" href="style.css" media="screen" />
+    <link rel="stylesheet" type="text/css" href="/css/style1.css" media="screen" />
     <script type="text/javascript" src="earley-oop.js"></script>
     <script type="text/javascript" src="http://code.jquery.com/jquery-2.1.3.min.js"></script>
-    <script type="text/javascript" src="script.js"></script>
+    <script type="text/javascript" src="/scripts/script1.js"></script>
 </head>
 <body>
 <!-- <div class="center"> -->
@@ -11,8 +11,9 @@
 <div id="div1">
 <h3>Non-terminal Symbols</h2>
 <p name="Nontermial Symbol" id="test">
-    hypo -> expr op expr | hypo & hypo<br/>
-    expr -> func ( expr ) | var | expr , expr <br/>
+    root -> hypo<br/>
+    hypo -> expr op expr | hypo & hypo | hypo [ pred ]<br/>
+    expr -> func ( expr )| func ( ) | var | expr , expr  <br/>
     var ->  attr | attr [ pred ] | const<br/>
     pred -> var op const | pred & pred<br/>
 </p>
@@ -30,9 +31,9 @@ str -> string
 </div>
 </div>
 <br/>
-<a href="#" class="example"> Invalid Input</a> <br/>
 <a href="#" class="example"> 2 < 2</a> <br/>
 <a href="#" class="example"> Cost[id=2]<2</a> <br/>
+<a href="#" class="example"> Cost[id=2] < 2 & Cost[id=2] < 2 </a> <br/>
 <a href="#" class="example"> Cost [ Market = 'US' ] < Cost [ Market = 'US' ]</a> <br/>
 <a href="#" class="example"> AVG ( Cost [ id = 2 ] ) = AVG ( Cost [ id = 2 ] )</a> <br/>
 <a href="#" class="example"> AVG(Cost[id = 2]) = AVG(Cost[id = 2])</a> <br/>
@@ -40,11 +41,10 @@ str -> string
 <a href="#" class="example"> Rating[Title = 'The Godfather'] = 9.1</a> <br/>
 <a href="#" class="example"> COUNT(Rating[Title = 'The Godfather']) = 2</a> <br/>
 <a href="#" class="example"> COUNT() > 1 [Year=1999]</a> <br/>
+<a href="#" class="example"> COUNT() > 1 </a> <br/>
 <a href="#" class="example"> 
 AVG ( Cost [ id = 2 ] , Cost [ Market = 'US' ] , Cost [ Market = 'US' ] ) 
 = AVG ( Cost [ id = 2 ] , Cost [ Market = 'US' ] , Cost [ Market = 'US' ] )</a> <br/>
-<a href="#" class="example"> 
-AVG ( Cost [ id = 2 ] , Cost [ Market = 'US' ] , Cost [ Market = 'US' ] ) = 2</a> <br/>
 <a href="#" class="example"> SUB ( AVG ( Cost ) , AVG ( Market ) ) < 10</a> <br/>
 
 <input type="text" size="60" id="txt"/>
