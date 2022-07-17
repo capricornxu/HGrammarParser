@@ -23,7 +23,10 @@ var tinynlp = (function(){
             // "A"
             var lhs = parts[0].trim();
             // "B C | D"
-            var rhss = parts[1].trim();
+            if(parts[1] != null){
+                var rhss = parts[1].trim();
+            }
+            // var rhss = parts[1].trim();
             // "B C | D" -> ["B C", "D"]
             var rhssParts = rhss.split('|');
             if (!this.lhsToRhsList[lhs]) {
