@@ -42,6 +42,7 @@ var tinynlp = (function(){
     Grammar.prototype.terminalSymbols = function(token) {
         return [];
     }
+    // returns right hand side of given leftHandSide
     Grammar.prototype.getRightHandSides = function(leftHandSide) {
             var rhss = this.lhsToRhsList[leftHandSide];
             if (rhss) {
@@ -70,6 +71,7 @@ var tinynlp = (function(){
             this.chart[i] = [];
         }
     }
+    // try to add newState to chart and returns true if success
     Chart.prototype.addToChart = function(newState, position) {
         newState.setId(this.currentId);
         // TODO: use HashSet + LinkedList

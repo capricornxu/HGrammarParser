@@ -169,6 +169,7 @@ $(document).ready(function(){
         tokenstream = tokenstream.splitbytokens(terminal_symbols);
 
         var grammar = new tinynlp.Grammar(rules);
+        console.log(rules);
         
         var rootProduction = 'root';
         var chart = tinynlp.parse(tokenstream, grammar, rootProduction);
