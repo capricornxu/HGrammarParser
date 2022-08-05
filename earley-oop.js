@@ -137,6 +137,7 @@ var tinynlp = (function(){
             this.ref[i] = {};
         }
     }
+    // returns true if the input is completely parsed
     State.prototype.complete = function() {
         return this.dot >= this.rhs.length;
     }
@@ -158,6 +159,7 @@ var tinynlp = (function(){
         builder.push(JSON.stringify(this.ref))
         return builder.join(' ');
     }
+    // returns true if the current symbol is non-terminal
     State.prototype.expectedNonTerminal = function(grammar) {
         var expected = this.rhs[this.dot];
         var rhss = grammar.getRightHandSides(expected);
@@ -172,8 +174,13 @@ var tinynlp = (function(){
     State.prototype.getId = function() {
         return this.id;
     }
+    // returns true if current state equals to otherState
     State.prototype.equals = function(otherState) {
-        if (this.lhs === otherState.lhs && this.dot === otherState.dot && this.left === otherState.left && this.right === otherState.right && JSON.stringify(this.rhs) === JSON.stringify(otherState.rhs)) {
+        if (this.lhs === otherState.lhs 
+            && this.dot === otherState.dot 
+            && this.left === otherState.left 
+            && this.right === otherState.right 
+            && JSON.stringify(this.rhs) === JSON.stringify(otherState.rhs)) {
             return true;
         }
         return false;

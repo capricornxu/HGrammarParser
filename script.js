@@ -158,20 +158,15 @@ $(document).ready(function(){
         // console.log(rules);
 
         var tokenstream = s.trim();
-        // console.log(tokenstream);
         // tramsform quotes to 'string' and number to 'number'
         tokenstream = eliminateQuotes(tokenstream);
         tokenstream = eliminateNum(tokenstream);
-        // console.log(tokenstream);
         // tokenize rules
         termnal_rules = $('#tgrm').val();
-        // console.log(termnal_rules);
         var terminal_symbols = getTsymbol(termnal_rules);
         terminal_symbols = terminal_symbols.concat(special_symbols);
-        // console.log(terminal_symbols);
         // split by tokens
         tokenstream = tokenstream.splitbytokens(terminal_symbols);
-        // console.log(tokenstream);
 
         var grammar = new tinynlp.Grammar(rules);
         
