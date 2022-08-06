@@ -139,7 +139,7 @@ var tinynlp = (function(){
             this.ref[i] = {};
         }
     }
-    // returns true if the input is completely parsed
+    // returns true if the state is completed
     State.prototype.complete = function() {
         return this.dot >= this.rhs.length;
     }

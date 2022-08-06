@@ -173,6 +173,7 @@ $(document).ready(function(){
         
         var rootProduction = 'root';
         var chart = tinynlp.parse(tokenstream, grammar, rootProduction);
+        console.log(chart);
 
         var state = chart.getFinishedRoot(rootProduction);
         console.log(state);
@@ -180,8 +181,8 @@ $(document).ready(function(){
         if (state) {
             $("#p1").html("<span style='color: green;'>Valid</span>");
             var trees = state.traverse();
-            console.log(displayTree(trees[0]));
-            $('#dv').empty();
+            // console.log(displayTree(trees[0]));
+            // $('#dv').empty();
             // console.log(trees);
             // $('#dv').append('<div class="tree"><ul>' + displayTree(trees[0]) + '</ul></div></br>');
             $('#dv').append(displayTree(trees[0]) + '</ul></div></br>');        
