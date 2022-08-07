@@ -6,46 +6,64 @@
     <script type="text/javascript" src="script.js"></script>
 </head>
 <body>
-<!-- <div class="center"> -->
+
 <h1>Hypothesis Grammar Parser</h1>
+
+<div id="grammar">
 <div id="div1">
-<h3>Non-terminal Symbols</h2>
+<h3>Non-terminal Symbols</h3>
 <p name="Nontermial Symbol" id="test">
     root -> hypo <br/>
     hypo -> ( expr op expr ) [ pred ] | expr op expr | hypo & hypo <br/>
-    expr -> func ( subexpr ) | func ( ) | var <br/>
-    subexpr -> expr | subexpr , subexpr <br/>
+    expr -> func ( subexpr ) | var <br/>
+    subexpr -> expr | subexpr , subexpr | _EPSILON_ <br/>
     var ->  attr | ( attr ) [ pred ] | const <br/>
     pred -> var op const | pred & pred <br/>
 </p>
 </div>
-<div id="div2">
+
+<div id="div1">
 <h3>Terminal Symbols</h2>
 <textarea name="Termial Symbol"  rows="10" id="tgrm">
 op -> = | < | > 
 attr -> Title | Year | Genre | Rating | Cost | Market
-const -> num | str | date | id 
+const -> number | string
 func -> AVG | KS | LM | SRES | MAX | SUB | COUNT
-num -> number
-str -> string
 </textarea>
 </div>
 </div>
+
+<div id="FYI">
+    <h3>FYI:</h3>
+    <ol>
+        <li>This is <a href="https://arxiv.org/abs/2204.14267">A Grammar for Hypothesis-Driven Visual Analysis</a></li>
+        <li>This is a <a href="https://en.wikipedia.org/wiki/Context-free_grammar">Context Free Grammar</a></li>
+        <li> _EPSILON_ means empty production</li>
+        <li>"number" and "string" are terminal symbols </li>
+        <li>"number" represents all numbers</li>
+        <li>"string" represents everything included in quotes. For example, "The Godfather".</li>
+      </ol>
+</div>
+
+
+
+<input type="text" size="80" id="txt"/>
+<button class="button" role="button">Parse</button>
 <br/>
-<a href="#" class="example"> 1 = 2</a> <br/>
+<!-- <a href="#" class="example"> 1 = 2</a> <br/>
+<a href="#" class="example"> 1 = str</a> <br/>
 <a href="#" class="example"> 1 = 'string'</a> <br/>
 <a href="#" class="example"> (Rating) [ Title = 'The Godfather' ] = 9.1</a> <br/>
+<a href="#" class="example"> (Rating) [ Titl = 'The Godfather' ] = 9.1</a> <br/>
+<a href="#" class="example"> (Rating)  Title = 'The Godfather' ] = 9.1</a> <br/>
 <a href="#" class="example"> COUNT((Rating)[Title = 'The Godfather']) = 2</a> <br/>
 <a href="#" class="example"> (COUNT() > 1) [Year=1999] & (COUNT() > 1) [Year=1999]</a> <br/>
 <a href="#" class="example"> 
 AVG ( (Cost) [ id = 2 ] , (Cost) [ Market = 'US' ] , (Cost) [ Market = 'US' ] ) 
 = AVG ( (Cost) [ id = 2 ] , (Cost) [ Market = 'US' ] , (Cost) [ Market = 'US' ] )</a> <br/>
-<a href="#" class="example"> SUB ( AVG ( Cost ) , AVG ( Market ) ) < 10</a> <br/>
-
-<input type="text" size="80" id="txt"/>
-<button id="btn1">parse</button>
+<a href="#" class="example"> SUB ( AVG ( Cost ) , AVG ( Market ) ) < 10</a> <br/> -->
 <p id="p1"></p>
 <div id="dv"></div>
 
-</body>
-</html>
+
+

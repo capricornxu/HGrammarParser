@@ -141,6 +141,14 @@ String.prototype.splitbytokens = function(tokens){
     return str;
 }
 
+function errorAt (chart){
+    for (var i in chart.chart){
+        if(JSON.stringify(chart.chart[i]) == '[]'){
+            return i;
+        }
+    }
+}
+
 $(document).ready(function(){
     // jQuery methods go here...
     $('.example').click(function(){     
@@ -149,7 +157,7 @@ $(document).ready(function(){
         return false;
     });
 
-    $('#btn1').click(function(){
+    $('.button').click(function(){
         var s = $('#txt').val(); 
 
         const p = document.getElementById('test');
@@ -167,12 +175,14 @@ $(document).ready(function(){
         terminal_symbols = terminal_symbols.concat(special_symbols);
         // split by tokens
         tokenstream = tokenstream.splitbytokens(terminal_symbols);
+        console.log(tokenstream);
 
         var grammar = new tinynlp.Grammar(rules);
         console.log(rules);
         
         var rootProduction = 'root';
         var chart = tinynlp.parse(tokenstream, grammar, rootProduction);
+
         console.log(chart);
 
         var state = chart.getFinishedRoot(rootProduction);
@@ -182,14 +192,24 @@ $(document).ready(function(){
             $("#p1").html("<span style='color: green;'>Valid</span>");
             var trees = state.traverse();
             // console.log(displayTree(trees[0]));
-            // $('#dv').empty();
+            $('#dv').empty();
             // console.log(trees);
             // $('#dv').append('<div class="tree"><ul>' + displayTree(trees[0]) + '</ul></div></br>');
             $('#dv').append(displayTree(trees[0]) + '</ul></div></br>');        
         
         }
         else{
-            $("#p1").html("<span style='color: red;'>Invalid</span>");
+            var errorIndex = errorAt(chart);
+            console.log(tokenstream.join(" "));
+            $("#p1").html("<span style='color: red;'>Invalid Input : </span>");
+            for (var i in tokenstream){
+                if( i == errorIndex - 1){
+                    $("#p1").append(" <span style='color: red;'>" + tokenstream[i] + "</span>");
+                }
+                else{
+                    $("#p1").append(" " + tokenstream[i]);
+                }
+            }
             $("#dv").html("");
         }
     })
